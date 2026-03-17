@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fresh Flow Pre-Launch</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#0b0b0b;
+color:#d4af37;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(10,10,10,0.85);
+backdrop-filter:blur(6px);
+z-index:1000;
+font-size:28px;
+letter-spacing:2px;
+font-weight:bold;
+color:#d4af37;
+border-bottom:1px solid rgba(212,175,55,0.2);
+}
+
+/* HERO IMAGE */
+
+.hero{
+margin-top:80px;
+position:relative;
+width:100%;
+height:100vh;
+overflow:hidden;
+}
+
+.hero img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* TEXT ON IMAGE */
+
+.spec{
+position:absolute;
+color:#f5d37a;
+padding:12px 16px;
+border-radius:6px;
+font-size:16px;
+max-width:220px;
+}
+
+.left-spec{
+left:140px;
+top:40%;
+}
+
+.right-spec{
+right:140px;
+top:40%;
+color:#996515;
+font-size:32px;
+}
+
+.bottom-spec{
+bottom:40px;
+left:50%;
+transform:translateX(-50%);
+text-align:center;
+color:#996515;
+font-size:22px;
+}
+
+/* FOOTER */
+
+footer{
+position:fixed;
+bottom:0;
+width:100%;
+background:rgba(5,5,5,0.95);
+border-top:1px solid rgba(212,175,55,0.2);
+padding:18px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:#d4af37;
+transition:all 0.5s;
+z-index:999;
+}
+
+.footer-left{
+font-size:18px;
+font-weight:bold;
+}
+
+.footer-right{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.launch-offer{
+color:#ffb347;
+}
+
+button{
+background:#d4af37;
+border:none;
+padding:10px 18px;
+color:black;
+font-weight:bold;
+border-radius:4px;
+cursor:pointer;
+}
+
+button:hover{
+background:#f2c94c;
+}
+
+/* FOOTER BECOMES HEADER */
+
+.footer-header{
+top:0;
+bottom:auto;
+border-top:none;
+border-bottom:1px solid rgba(212,175,55,0.2);
+}
+
+.intro-text{
+font-size:16px;
+color:#e0c46b;
+letter-spacing:2px;
+font-family:Sans-serif;
+text-align:Center;
+margin-bottom:8px;
+color:#996515;
+}
+
+.product-name{
+font-size:48px;
+font-family:'Bebas Neue', sans-serif;
+color:#d4af37;
+letter-spacing:5px;
+color:#996515;
+}
+
+.flow{
+margin-left:143px;
+}
+
+/* ===== SCROLL IMAGE STACK ANIMATION SECTION ===== */
+
+.stack-section-wrapper{
+background:#0b0b0b;
+/* height is set dynamically by JS based on number of cards */
+}
+
+.stack-section{
+position:sticky;
+top:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.stack-label{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%, -50%);
+text-align:center;
+pointer-events:none;
+z-index:10;
+opacity:0;
+transition:opacity 0.4s;
+}
+
+.stack-label h2{
+font-family:'Bebas Neue', sans-serif;
+font-size:52px;
+letter-spacing:6px;
+color:#d4af37;
+line-height:1;
+}
+
+.stack-label p{
+font-size:13px;
+color:#996515;
+letter-spacing:3px;
+margin-top:6px;
+}
+
+.stack{
+position:relative;
+width:500px;
+height:500px;
+}
+
+.card{
+position:absolute;
+width:100%;
+height:100%;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 20px 60px rgba(0,0,0,0.6);
+will-change:transform,opacity;
+}
+
+.card img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.card:nth-child(1){z-index:4;}
+.card:nth-child(2){z-index:3;}
+.card:nth-child(3){z-index:2;}
+.card:nth-child(4){z-index:1;}
+
+/* ===== GET THE HIGHLIGHTS SECTION ===== */
+
+.highlights{
+background:#f2f2f2;
+padding:60px 40px 40px;
+}
+
+.highlights-title{
+font-size:22px;
+font-weight:bold;
+color:#111;
+margin-bottom:24px;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+.slider-wrapper{
+position:relative;
+overflow:hidden;
+}
+
+.slider-track{
+display:flex;
+gap:16px;
+transition:transform 0.5s ease;
+}
+
+.slide{
+min-width:420px;
+height:280px;
+position:relative;
+border-radius:4px;
+overflow:hidden;
+flex-shrink:0;
+}
+
+.slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.slide-text{
+position:absolute;
+bottom:0;
+left:0;
+padding:20px;
+color:#fff;
+}
+
+.slide-text h3{
+font-size:18px;
+font-weight:bold;
+margin-bottom:6px;
+}
+
+.slide-text p{
+font-size:12px;
+color:#ddd;
+line-height:1.5;
+}
+
+.slide-text p span{
+font-weight:bold;
+}
+
+/* TIMER / PROGRESS BAR */
+
+.slider-controls{
+display:flex;
+align-items:center;
+gap:12px;
+margin-top:20px;
+}
+
+.play-btn{
+background:none;
+border:none;
+cursor:pointer;
+color:#111;
+font-size:16px;
+padding:0;
+}
+
+.progress-bars{
+display:flex;
+gap:6px;
+align-items:center;
+}
+
+.progress-bar{
+width:40px;
+height:3px;
+background:#ccc;
+border-radius:2px;
+overflow:hidden;
+cursor:pointer;
+}
+
+.progress-bar .fill{
+height:100%;
+width:0%;
+background:#111;
+border-radius:2px;
+transition:width 0.05s linear;
+}
+
+.progress-bar.active .fill{
+width:100%;
+}
+
+/* ===== PRODUCT SHOWCASE SECTION ===== */
+
+.product-showcase{
+position:relative;
+width:100%;
+height:600px;
+overflow:hidden;
+}
+
+.product-showcase img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.showcase-text{
+position:absolute;
+top:50%;
+left:60px;
+transform:translateY(-50%);
+color:#fff;
+max-width:280px;
+}
+
+.showcase-brand{
+font-size:36px;
+font-weight:900;
+letter-spacing:4px;
+text-transform:uppercase;
+color:#fff;
+line-height:1;
+margin-bottom:6px;
+}
+
+.showcase-brand span{
+font-size:11px;
+display:block;
+letter-spacing:2px;
+font-weight:400;
+color:#ccc;
+margin-top:4px;
+}
+
+.showcase-tagline{
+font-size:20px;
+font-weight:bold;
+color:#fff;
+margin-top:16px;
+margin-bottom:10px;
+}
+
+.showcase-desc{
+font-size:12px;
+color:#ccc;
+line-height:1.7;
+}
+
+.spacer{
+height:120vh;
+background:#0b0b0b;
+}
+
+/* ===== EXPERIENCE THE SILENCE SECTION ===== */
+
+.silence-section{
+position:relative;
+width:100%;
+height:100vh;
+overflow:hidden;
+display:flex;
+align-items:center;
+}
+
+.silence-bg{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center top;
+filter:brightness(0.55);
+}
+
+.silence-overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.35) 100%);
+}
+
+.silence-content{
+position:relative;
+z-index:2;
+width:100%;
+padding:0 80px;
+color:#fff;
+}
+
+.silence-headline{
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+margin-bottom:32px;
+}
+
+.silence-left{
+font-size:clamp(36px, 5vw, 72px);
+font-weight:700;
+line-height:1.1;
+letter-spacing:-1px;
+color:#fff;
+max-width:45%;
+}
+
+.silence-right{
+font-size:clamp(36px, 5vw, 72px);
+font-weight:700;
+line-height:1.1;
+letter-spacing:-1px;
+color:#fff;
+text-align:right;
+max-width:45%;
+}
+
+.silence-desc{
+position:absolute;
+right:80px;
+top:50%;
+transform:translateY(10px);
+font-size:14px;
+color:rgba(255,255,255,0.85);
+line-height:1.8;
+text-align:left;
+max-width:280px;
+}
+
+.silence-play-wrap{
+position:absolute;
+bottom:80px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:14px;
+}
+
+.silence-play-label{
+font-size:13px;
+color:rgba(255,255,255,0.75);
+letter-spacing:0.3px;
+text-align:center;
+}
+
+.silence-play-label strong{
+color:#fff;
+}
+
+.silence-play-btn{
+display:flex;
+align-items:center;
+gap:10px;
+background:rgba(255,255,255,0.95);
+color:#111;
+border:none;
+padding:14px 32px;
+border-radius:50px;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+letter-spacing:0.3px;
+transition:background 0.2s, transform 0.2s;
+}
+
+.silence-play-btn:hover{
+background:#fff;
+transform:scale(1.04);
+}
+
+.silence-play-icon{
+font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header id="mainHeader">
+Techtotem
+</header>
+
+<section class="hero" id="hero">
+
+  <img src="Fresh-flow.png">
+
+  <div class="spec left-spec">
+    <div class="intro-text">Introducing</div>
+    <div class="product-name">
+      <span class="fresh">Fresh</span>
+      <span class="flow">Flow</span>
+    </div>
+  </div>
+
+  <div class="spec right-spec">
+    Enjoy the high quality, in summers
+  </div>
+
+  <div class="spec bottom-spec">
+    Launching on 15th October 2026
+  </div>
+
+</section>
+
+<!-- ===== GET THE HIGHLIGHTS SECTION ===== -->
+
+<section class="highlights">
+
+  <div class="highlights-title">Get the highlights</div>
+
+  <div class="slider-wrapper">
+    <div class="slider-track" id="sliderTrack">
+
+      <!-- SLIDE 1 -->
+      <div class="slide">
+        <img src="Fresh-flow.png">
+        <div class="slide-text">
+          <h3>Sound by Fresh Flow</h3>
+          <p>Enjoy high quality, expertly tuned audio.</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="slide">
+        <img src="Fresh-flow.png">
+        <div class="slide-text">
+          <h3>Best in class ANC</h3>
+          <p>Up to <span>55dB ANC</span> powered by our <span>sculpted cavity design.</span></p>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide">
+        <img src="Fresh-flow.png">
+        <div class="slide-text">
+          <h3>Unmatched call quality</h3>
+          <p>6-mic ENC with <span>Sound+ Algorithm</span> for crystal-clear calls.</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 4 -->
+      <div class="slide">
+        <img src="Fresh-flow.png">
+        <div class="slide-text">
+          <h3>360° Spatial audio with head tracking</h3>
+          <p>Immersive 360° sound that stays aligned with a <span>built-in 6-axis IMU sensor.</span></p>
+        </div>
+      </div>
+
+      <!-- SLIDE 5 -->
+      <div class="slide">
+        <img src="Fresh-flow.png">
+        <div class="slide-text">
+          <h3>Voice-powered AI assistance</h3>
+          <p>Understands natural language, answers questions, and assists with tasks in real time.</p>
+        </div>
+      </div>
+
+      <!-- SLIDE 6 -->
+      <div class="slide">
+        <img src="Fresh-flow.png">
+        <div class="slide-text">
+          <h3>Engineered cavity design</h3>
+          <p>Engineered with a <span>sculpted cavity design</span> for enhanced <span>acoustics</span> and powerful ANC.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TIMER + PROGRESS BARS -->
+  <div class="slider-controls">
+    <button class="play-btn" id="playBtn">&#9654;</button>
+    <div class="progress-bars" id="progressBars"></div>
+  </div>
+
+</section>
+
+<!-- ===== PRODUCT SHOWCASE SECTION ===== -->
+
+<section class="product-showcase">
+
+  <img src="Fresh-flow.png">
+
+  <div class="showcase-text">
+
+    <div class="showcase-brand">
+      Fresh Flow
+      <span>YOUR SOUND. MASTERED</span>
+    </div>
+
+    <div class="showcase-tagline">
+      Your sound, mastered
+    </div>
+
+    <div class="showcase-desc">
+      Fresh Flow is tuned with premium audio technology, delivers
+      balanced, distortion-free audio with deep bass, clear
+      mids, and crisp highs.
+    </div>
+
+  </div>
+
+</section>
+
+<footer id="mainFooter">
+
+  <div class="footer-left">
+    Fresh Flow
+  </div>
+
+  <div class="footer-right">
+    <div class="launch-offer">
+      get $25,000 off on launch
+    </div>
+    <button>Pre-Book Now</button>
+  </div>
+
+</footer>
+
+<!-- ===== SCROLL IMAGE STACK ANIMATION ===== -->
+
+<div class="stack-section-wrapper" id="stackWrapper">
+  <div class="stack-section" id="stackSection">
+
+    <div class="stack-label" id="stackLabel">
+      <h2>Fresh Flow</h2>
+      <p>YOUR SOUND. MASTERED.</p>
+    </div>
+
+    <div class="stack" id="stack">
+      <div class="card">
+        <img src="Fresh-flow.png" alt="Fresh Flow - Sound">
+      </div>
+      <div class="card">
+        <img src="Fresh-flow.png" alt="Fresh Flow - ANC">
+      </div>
+      <div class="card">
+        <img src="Fresh-flow.png" alt="Fresh Flow - Spatial Audio">
+      </div>
+      <div class="card">
+        <img src="Fresh-flow.png" alt="Fresh Flow - Design">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<!-- ===== EXPERIENCE THE SILENCE SECTION ===== -->
+
+<section class="silence-section">
+
+  <img src="Fresh-flow.png" class="silence-bg" alt="Experience the Silence">
+
+  <div class="silence-overlay"></div>
+
+  <div class="silence-content">
+
+    <div class="silence-headline">
+      <span class="silence-left">Experience the</span>
+      <span class="silence-right">silence</span>
+    </div>
+
+    <div class="silence-desc">
+      Toggle ANC to feel the shift.<br>
+      Background noise drops, your music<br>
+      takes center stage—clearer, richer, focused.
+    </div>
+
+    <div class="silence-play-wrap">
+      <p class="silence-play-label">Play to experience the true silence of <strong>Fresh Flow</strong></p>
+      <button class="silence-play-btn" id="silencePlayBtn">
+        <span class="silence-play-icon">&#9654;</span>
+        Play Audio
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+
+/* ===== SCROLL: FOOTER BECOMES HEADER ===== */
+
+const hero      = document.getElementById("hero");
+const mainHeader = document.getElementById("mainHeader");
+const footer    = document.getElementById("mainFooter");
+
+window.addEventListener("scroll", () => {
+  let heroBottom = hero.offsetTop + hero.offsetHeight;
+  if(window.scrollY > heroBottom - 100){
+    mainHeader.style.display = "none";
+    footer.classList.add("footer-header");
+  } else {
+    mainHeader.style.display = "flex";
+    footer.classList.remove("footer-header");
+  }
+});
+
+/* ===== SCROLL IMAGE STACK ANIMATION ===== */
+
+(function(){
+
+  const wrapper   = document.getElementById("stackWrapper");
+  const cards     = document.querySelectorAll(".card");
+  const stackLabel = document.getElementById("stackLabel");
+  const totalCards = cards.length;
+  const scrollPerCard = 350; // px of scroll per card animation
+  const totalScrollHeight = totalCards * scrollPerCard + 200; // extra buffer
+
+  // Set the wrapper height so sticky works correctly
+  wrapper.style.height = totalScrollHeight + "px";
+
+  window.addEventListener("scroll", animateStack);
+
+  function animateStack(){
+    const wrapperTop  = wrapper.getBoundingClientRect().top + window.scrollY;
+    const scrollInSection = window.scrollY - wrapperTop;
+
+    let allGone = true;
+
+    cards.forEach((card, index) => {
+      const start    = index * scrollPerCard;
+      const end      = start + scrollPerCard;
+      const progress = Math.max(0, Math.min(1, (scrollInSection - start) / scrollPerCard));
+
+      if(progress < 1) allGone = false;
+
+      if(scrollInSection <= start){
+        // Card untouched - sit in stack
+        card.style.transform = "scale(1) translateY(0px)";
+        card.style.opacity   = "1";
+      } else if(scrollInSection > start && scrollInSection < end){
+        // Card animating: zoom in and fly up
+        const scale      = 1 + progress * 0.6;
+        const translateY = -progress * 220;
+        card.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+        card.style.opacity   = String(1 - progress);
+      } else {
+        // Card fully consumed
+        card.style.transform = "scale(1.6) translateY(-220px)";
+        card.style.opacity   = "0";
+      }
+    });
+
+    // Show label text when all cards have been swiped away
+    stackLabel.style.opacity = allGone ? "1" : "0";
+  }
+
+  // Run once on load to set initial state
+  animateStack();
+
+})();
+
+/* ===== SLIDER LOGIC ===== */
+
+const track              = document.getElementById("sliderTrack");
+const progressBarsContainer = document.getElementById("progressBars");
+const playBtn            = document.getElementById("playBtn");
+
+const slides      = track.querySelectorAll(".slide");
+const totalSlides = slides.length;
+const slideDuration = 4000;
+const slideWidth    = 420 + 16;
+
+let currentSlide    = 0;
+let isPlaying       = true;
+let progressInterval = null;
+let progressValue   = 0;
+
+// CREATE PROGRESS BARS
+slides.forEach((_, i) => {
+  const bar  = document.createElement("div");
+  bar.classList.add("progress-bar");
+  const fill = document.createElement("div");
+  fill.classList.add("fill");
+  bar.appendChild(fill);
+  bar.addEventListener("click", () => goToSlide(i));
+  progressBarsContainer.appendChild(bar);
+});
+
+const bars = progressBarsContainer.querySelectorAll(".progress-bar");
+
+function goToSlide(index){
+  currentSlide = index;
+  track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+  resetProgress();
+  updateBars();
+  if(isPlaying) startProgress();
+}
+
+function updateBars(){
+  bars.forEach((bar, i) => {
+    bar.querySelector(".fill").style.width = i < currentSlide ? "100%" : "0%";
+  });
+}
+
+function resetProgress(){
+  clearInterval(progressInterval);
+  progressValue = 0;
+  if(bars[currentSlide]){
+    bars[currentSlide].querySelector(".fill").style.width = "0%";
+  }
+}
+
+function startProgress(){
+  resetProgress();
+  const steps     = slideDuration / 50;
+  const increment = 100 / steps;
+
+  progressInterval = setInterval(() => {
+    progressValue += increment;
+    if(bars[currentSlide]){
+      bars[currentSlide].querySelector(".fill").style.width = progressValue + "%";
+    }
+    if(progressValue >= 100){
+      clearInterval(progressInterval);
+      currentSlide = (currentSlide + 1) % totalSlides;
+      track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+      updateBars();
+      if(isPlaying) startProgress();
+    }
+  }, 50);
+}
+
+// PLAY / PAUSE BUTTON
+playBtn.addEventListener("click", () => {
+  if(isPlaying){
+    isPlaying = false;
+    clearInterval(progressInterval);
+    playBtn.innerHTML = "&#9654;";
+  } else {
+    isPlaying = true;
+    playBtn.innerHTML = "&#9646;&#9646;";
+    startProgress();
+  }
+});
+
+// START SLIDER
+updateBars();
+startProgress();
+playBtn.innerHTML = "&#9646;&#9646;";
+
+/* ===== SILENCE PLAY BUTTON ===== */
+
+const silenceBtn = document.getElementById("silencePlayBtn");
+let silencePlaying = false;
+
+silenceBtn.addEventListener("click", () => {
+  silencePlaying = !silencePlaying;
+  if(silencePlaying){
+    silenceBtn.innerHTML = `<span class="silence-play-icon">&#9646;&#9646;</span> Playing...`;
+  } else {
+    silenceBtn.innerHTML = `<span class="silence-play-icon">&#9654;</span> Play Audio`;
+  }
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FanFusion Pre-Order</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 40px;
+        }
+
+        /* FAN BACKGROUND */
+        .fan-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: url('fan.png') no-repeat center/contain;
+            opacity: 0.08;
+            /* very light cream effect */
+            z-index: -1;
+            animation: spin 6s linear infinite;
+            filter: sepia(40%) saturate(60%) brightness(110%);
+        }
+
+        /* ROTATION */
+        @keyframes spin {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .fan-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1.00;
+            /* medium visibility */
+            z-index: -1;
+            filter: sepia(40%) brightness(110%) blur(2px);
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* IMAGE */
+        .product-img {
+            width: 500px;
+            border-radius: 12px;
+        }
+
+        /* RIGHT SIDE TEXT */
+        .content {
+            max-width: 700px;
+        }
+
+        /* FULL SECTION */
+        .faq-section {
+            color: white;
+            padding: 80px 20px;
+            margin-top: 80px;
+        }
+
+        /* INNER BOX */
+        .faq {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+
+        /* HEADING CENTER */
+        .faq h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        /* FAQ CARDS */
+        details {
+            background: #1a1a1a;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        details:hover {
+            background: #222;
+        }
+
+        /* QUESTION */
+        summary {
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ANSWER */
+        details p {
+            margin-top: 10px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .buy-btn {
+            background: #00c2ff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        .buy-btn:hover {
+            background: #009ed1;
+        }
+
+        ul {
+            padding-left: 18px;
+            line-height: 1.6;
+        }
+
+        .launch {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #00c2ff;
+        }
+
+
+        .footer {
+            background: #000;
+            color: #ccc;
+            padding: 60px 40px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .footer a {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .newsletter input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #222;
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+        .prebook-form {
+            max-width: 400px;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .prebook-form input {
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .prebook-form button {
+            background: #00c2ff;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<video class="fan-video" autoplay muted loop playsinline>
+    <source src="intro.mp4" type="video/mp4">
+</video>
+<form action="https://formspree.io/f/mwvrwvnn" method="POST" class="prebook-form">
+
+            <h2>Pre-Book Fresh Flow</h2>
+
+            <input type="text" name="name" placeholder="Your Name" required>
+
+            <input type="email" name="email" placeholder="Your Email" required>
+
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+
+            <input type="hidden" name="product" value="Fresh Flow Preorder">
+
+            <button type="submit">Confirm Pre-Booking</button>
+
+        </form>
+    <div class="container">
+
+        <!-- LEFT IMAGE -->
+        <img src="Fresh-flow.png" class="product-img">
+
+        <!-- RIGHT CONTENT -->
+        <div class="content">
+
+            <h1>Freahflo Pre-Order Pass</h1>
+
+            <div class="price">₹2,099</div>
+
+            <button class="buy-btn">Buy Now</button>
+
+            <p><b>Pay ₹2,099 & get ₹3,400 off & additional benefits worth ₹5,499</b></p>
+
+            <ul>
+                <li>Flat ₹1999 Off: Get an instant coupon for ₹1999</li>
+                <li>Extra ₹600 Off via HDFC cards at checkout</li>
+                <li>Effective price of Freshflo will be ₹5,499</li>
+            </ul>
+
+            <h3>After delivery you get:</h3>
+
+            <ul>
+                <li>Flat ₹3,400 Off on TERASOCKET</li>
+                <li>Flat ₹1000 Off on purchase above ₹3500</li>
+                <li>Flat ₹500 Off on purchase above ₹2000</li>
+            </ul>
+
+            <p class="launch">Launching on 1st April, 12 PM</p>
+
+            <h3>How does it work?</h3>
+
+            <p>
+                Pay ₹2,099 to buy the pre-order pass.
+                You will receive a ₹2,099 coupon on your mobile number and email.
+                Use it during checkout on launch day to complete the remaining payment.
+            </p>
+
+            <p>
+                The pass will be valid for 14 days after launch.
+            </p>
+
+        </div> <!-- container ends -->
+    </div>
+
+    <section class="faq-section">
+
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+
+            <details>
+                <summary>How does the pre-order pass work?</summary>
+                <p>
+                    Pay ₹2,099 to buy the Freahflo pre-order pass.
+                    You will receive a ₹1999 coupon code on your registered email and mobile number.
+                    Use this coupon on launch day during checkout.
+                </p>
+            </details>
+
+            <details>
+                <summary>When will Freahflo launch?</summary>
+                <p>
+                    Freahflo will officially launch on 1st April at 12 PM.
+                </p>
+            </details>
+
+            <details>
+                <summary>How long is the pass valid?</summary>
+                <p>
+                    The pre-order pass will remain valid for 14 days from the launch date.
+                </p>
+            </details>
+
+            <details>
+                <summary>Will I get additional discounts?</summary>
+                <p>
+                    Yes, you will receive an instant ₹1999 coupon and additional bank offers such as ₹600 off via
+                    HDFC cards.
+                </p>
+            </details>
+
+        </div>
+    </section>
+
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <!-- LOGO / NEWSLETTER -->
+            <div>
+                <h2>FanFusion</h2>
+                <p>Receive the Latest Updates</p>
+
+                <div class="newsletter">
+                    <input type="email" placeholder="Email Address">
+                </div>
+            </div>
+
+
+            <!-- FEATURES -->
+            <div>
+                <h3>Shop by Features</h3>
+
+                <a href="#">Smart Freshflo with remote</a>
+                <a href="#">Freshflo with time changeable</a>
+                <a href="#">Fan integrated with Freahflo</a>
+                <a href="#">Metallic & Leather Smart Watches</a>
+
+
+            </div>
+
+
+
+            <div>
+                <h3 style="margin-top:20px;">Shop by Price</h3>
+
+                <a href="#">Under ₹2000</a>
+                <a href="#">Under ₹3000</a>
+                <a href="#">Under ₹4000</a>
+                <a href="#">Under ₹5000</a>
+                <a href="#">Above ₹5000</a>
+
+            </div>
+
+
+            <!-- OTHER LINKS -->
+            <div>
+
+                <h3>Other Links</h3>
+
+                <a href="#">Our Products</a>
+                <a href="#">About Us</a>
+                <a href="#">Support</a>
+                <a href="#">For Business</a>
+                <a href="#">Legal</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            Copyright © 2025, FanFusion. All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
